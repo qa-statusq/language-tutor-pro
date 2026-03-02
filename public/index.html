@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indic Language Tutor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1>Language Tutor by factoHR</h1>
+      <p class="subtitle">AI-powered language learning for Indian languages</p>
+    </header>
+
+    <!-- Setup Panel -->
+    <div id="setup-panel" class="setup-panel">
+      <!-- Language Selection -->
+      <section class="setup-section">
+        <h2>Choose a Language</h2>
+        <div id="language-grid" class="language-grid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- Level Selection -->
+      <section class="setup-section" id="level-section" style="display:none;">
+        <h2>Select Your Level</h2>
+        <div class="level-cards">
+          <div class="level-card" data-level="A1">
+            <div class="level-badge">A1</div>
+            <h3>Beginner</h3>
+            <p>Learn basic greetings, numbers, and simple phrases</p>
+          </div>
+          <div class="level-card" data-level="A2">
+            <div class="level-badge">A2</div>
+            <h3>Elementary</h3>
+            <p>Build sentences, have simple conversations, describe daily routines</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Topic Selection -->
+      <section class="setup-section" id="topic-section" style="display:none;">
+        <h2>Pick a Topic</h2>
+        <div id="topic-grid" class="topic-grid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- Start Button -->
+      <div id="start-section" style="display:none;" class="start-section">
+        <button id="start-btn" class="btn-start">Start Lesson</button>
+      </div>
+    </div>
+
+    <!-- Chat Panel -->
+    <div id="chat-panel" class="chat-panel" style="display:none;">
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <span id="chat-lang" class="chat-lang"></span>
+          <span id="chat-level" class="chat-level-badge"></span>
+          <span id="chat-topic" class="chat-topic"></span>
+        </div>
+        <button id="new-lesson-btn" class="btn-new-lesson">New Lesson</button>
+      </div>
+
+      <!-- Messages -->
+      <div id="chat-messages" class="chat-messages">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-area">
+        <div class="input-row">
+          <input type="text" id="message-input" class="message-input" placeholder="Type your message..." autocomplete="off">
+          <button id="send-btn" class="btn-send" title="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+          </button>
+          <button id="voice-btn" class="btn-voice" title="Record voice">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </button>
+        </div>
+        <div id="recording-indicator" class="recording-indicator" style="display:none;">
+          <span class="recording-dot"></span>
+          <span>Recording... Click mic to stop</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display:none;">
+      <div class="spinner"></div>
+      <p id="loading-text">Loading...</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

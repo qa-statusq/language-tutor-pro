@@ -1,0 +1,29 @@
+{
+  "name": "language-tutor",
+  "version": "1.0.0",
+  "description": "AI-powered Indic Language Tutor POC",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "python app.py",
+    "old": "node server.js",
+    "dev": "python app.py"
+  },
+  "keywords": [
+    "language",
+    "tutor",
+    "ai",
+    "indic"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@huggingface/inference": "^4.13.13",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

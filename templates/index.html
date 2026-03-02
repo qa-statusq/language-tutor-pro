@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Tutor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<div id="app">
+
+    <!-- ======== ONBOARDING ======== -->
+    <div id="onboarding" class="onboarding">
+        <div class="ob-wrap">
+            <!-- Logo -->
+            <div class="ob-brand">
+                <div class="ob-logo-mark">L</div>
+                <div>
+                    <div class="ob-logo-text">Language Tutor</div>
+                    <div class="ob-logo-sub">AI-powered personal language coach</div>
+                </div>
+            </div>
+
+            <!-- Progress -->
+            <div class="ob-steps-row">
+                <div class="ob-step-pill active" data-s="1"><span class="ob-sp-num">1</span> Language</div>
+                <div class="ob-step-pill" data-s="2"><span class="ob-sp-num">2</span> I know</div>
+                <div class="ob-step-pill" data-s="3"><span class="ob-sp-num">3</span> Level</div>
+                <div class="ob-step-pill" data-s="4"><span class="ob-sp-num">4</span> Teacher</div>
+                <div class="ob-step-pill" data-s="5"><span class="ob-sp-num">5</span> Topic</div>
+            </div>
+
+            <!-- Step 1 -->
+            <section class="ob-panel active" id="step1">
+                <h2>What language do you want to learn?</h2>
+                <div class="grid-lang" id="targetLangGrid"></div>
+            </section>
+
+            <!-- Step 2 -->
+            <section class="ob-panel" id="step2">
+                <h2>What language do you already know?</h2>
+                <p class="ob-hint">All explanations will be in this language</p>
+                <div class="grid-lang" id="instructionLangGrid"></div>
+            </section>
+
+            <!-- Step 3 -->
+            <section class="ob-panel" id="step3">
+                <h2>What's your level?</h2>
+                <div class="grid-level" id="levelGrid"></div>
+            </section>
+
+            <!-- Step 4 -->
+            <section class="ob-panel" id="step4">
+                <h2>Choose your teacher</h2>
+                <p class="ob-hint">Each teacher has a unique style — pick who resonates with you</p>
+                <div class="grid-teacher" id="teacherGrid"></div>
+            </section>
+
+            <!-- Step 5 -->
+            <section class="ob-panel" id="step5">
+                <h2>Pick today's topic</h2>
+                <div class="grid-topic" id="topicGrid"></div>
+                <button class="btn-go" id="btnStart" disabled>
+                    Start Lesson
+                    <svg width="16" height="16" fill="none"><path d="M3 8h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </section>
+
+            <!-- Nav -->
+            <button class="ob-back" id="btnStepBack">
+                <svg width="14" height="14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Back
+            </button>
+        </div>
+    </div>
+
+    <!-- ======== LESSON ======== -->
+    <div id="lesson" class="lesson hidden">
+        <!-- Header -->
+        <header class="ls-head">
+            <div class="ls-left">
+                <button class="icon-btn" id="btnEnd" title="End lesson">
+                    <svg width="16" height="16" fill="none"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="ls-meta">
+                    <span class="ls-lang" id="lsLang"></span>
+                    <span class="ls-topic" id="lsTopic"></span>
+                </div>
+            </div>
+            <div class="ls-right">
+                <div class="xp-chip" id="xpChip">
+                    <svg width="12" height="12" fill="none"><path d="M6 1l1.5 3 3.5.5-2.5 2.4.6 3.5L6 8.8 2.9 10.4l.6-3.5L1 4.5 4.5 4 6 1z" fill="currentColor"/></svg>
+                    <span id="xpVal">0 XP</span>
+                </div>
+                <button class="icon-btn" id="btnQuiz" title="Take quiz">
+                    <svg width="16" height="16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 6h6M5 8.5h4M5 11h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
+                <button class="icon-btn" id="btnMute" title="Toggle voice">
+                    <svg id="icoVol" width="16" height="16" fill="none"><path d="M8 3L4.5 6H2v4h2.5L8 13V3z" fill="currentColor"/><path d="M11 6s1 .8 1 2-1 2-1 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <svg id="icoMute" class="hidden" width="16" height="16" fill="none"><path d="M8 3L4.5 6H2v4h2.5L8 13V3z" fill="currentColor"/><path d="M11 6.5l3 3m0-3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Teacher strip -->
+        <div class="teacher-strip" id="teacherStrip">
+            <img class="ts-photo" id="tsPhoto" src="" alt="">
+            <div class="ts-info">
+                <span class="ts-name" id="tsName"></span>
+                <span class="ts-status" id="tsStatus">Listening...</span>
+            </div>
+        </div>
+
+        <!-- Chat -->
+        <div class="chat-area" id="chatArea">
+            <div class="chat-msgs" id="chatMsgs"></div>
+        </div>
+
+        <!-- Input -->
+        <div class="input-dock">
+            <div class="input-box">
+                <button class="icon-btn mic-btn" id="btnMic" title="Voice input">
+                    <svg width="16" height="16" fill="none"><rect x="5" y="1.5" width="6" height="8" rx="3" fill="currentColor"/><path d="M4 7a4 4 0 008 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 13v1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
+                <input type="text" id="msgInput" placeholder="Type a message..." autocomplete="off">
+                <button class="icon-btn send-btn" id="btnSend" title="Send">
+                    <svg width="16" height="16" fill="none"><path d="M2 8l12-6-6 12V8H2z" fill="currentColor"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Quiz overlay -->
+        <div class="quiz-overlay hidden" id="quizOverlay">
+            <div class="quiz-modal">
+                <div class="quiz-head">
+                    <h3>Mini Quiz</h3>
+                    <button class="icon-btn" id="btnCloseQuiz">&times;</button>
+                </div>
+                <div class="quiz-body" id="quizBody">
+                    <div class="quiz-loading">Generating quiz...</div>
+                </div>
+                <div class="quiz-foot" id="quizFoot"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/js/app.js"></script>
+</body>
+</html>
